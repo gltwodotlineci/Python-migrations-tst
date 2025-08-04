@@ -1,3 +1,8 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def index(request):
+    """
+    Render the index page of profiles.
+    """
+    return render(request, 'lettings/index.html')
