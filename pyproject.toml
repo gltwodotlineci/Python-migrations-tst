@@ -1,0 +1,20 @@
+[project]
+name = "lettings-site"
+version = "0.1.0"
+description = "project separated in 2 apps/migration and devops"
+authors = [
+    {name = "glen"}
+]
+license = {text = "private"}
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "django (==5.2.4)",
+    "flake8 (==7.3.0)",
+    "pytest-django (==4.11.1)",
+    "sentry-sdk (==2.34.1)",
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
