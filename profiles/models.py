@@ -10,5 +10,5 @@ class Profile(models.Model):
         db_table = 'oc_lettings_site_profile'
 
 
-    # def __str__(self):
-    #     return self.user.username
+    def __str__(self):
+        return self.user.username

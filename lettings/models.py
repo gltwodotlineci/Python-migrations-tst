@@ -13,8 +13,8 @@ class Address(models.Model):
     class Meta:
         db_table = 'oc_lettings_site_address'
 
-    # def __str__(self):
-    #     return f'{self.number} {self.street}'
+    def __str__(self):
+        return f'{self.number} {self.street}'
 
 
 class Letting(models.Model):
@@ -24,5 +24,5 @@ class Letting(models.Model):
     class Meta:
         db_table = 'oc_lettings_site_letting'
 
-    # def __str__(self):
-    #     return self.title
+    def __str__(self):
+        return self.title
