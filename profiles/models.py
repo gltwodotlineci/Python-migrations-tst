@@ -9,6 +9,5 @@ class Profile(models.Model):
     class Meta:
         db_table = 'oc_lettings_site_profile'
 
-
     def __str__(self):
         return self.user.username
