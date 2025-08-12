@@ -78,3 +78,4 @@ class HttpResponseTest(TestCase):
         self.assertIn(b"Lettings", response.content)
         self.assertNotIn(b"We hunged Mussolini here", response.content)
         self.assertIn(b"The Tram is still there", response.content)
+        self.assertIn(b"France", response.content)
