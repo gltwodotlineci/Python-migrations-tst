@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from profiles.models import Profile, User
+from profiles.models import Profile
 
 
 def index(request):
@@ -11,5 +11,5 @@ def index(request):
 
 def profile(request, username):
     """ Render the user profile"""
-    profile = User.objects.get(username=username)
+    profile = Profile.objects.get(user__username=username)
     return render(request, 'profiles/profile.html', {'profile': profile})
