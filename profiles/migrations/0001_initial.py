@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.SeparateDatabaseAndState(
-            state_operations=[         
+            state_operations=[
                 migrations.CreateModel(
                     name='Profile',
                     fields=[
@@ -27,8 +27,8 @@ class Migration(migrations.Migration):
                         'db_table': 'oc_lettings_site_profile',
                     },
                 ),
-             ],
-            # You reference an existing table
-            database_operations=[],
+            ],
+            # You want to reuse the table, so don't drop it
+            # database_operations=[],
         )
     ]

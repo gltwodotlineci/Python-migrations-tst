@@ -30,26 +30,25 @@ class Migration(migrations.Migration):
                         'db_table': 'oc_lettings_site_address',
                     },
                 ),
-             ],
-            # You reference an existing table
-            database_operations=[],
+            ],
+            # You want to reuse the table, so don't drop it
+            # database_operations=[],
         ),
-
         migrations.SeparateDatabaseAndState(
-            state_operations=[
+            state_operations=[        
                 migrations.CreateModel(
                     name='Letting',
-                fields=[
-                    ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                    ('title', models.CharField(max_length=256)),
-                    ('address', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='lettings.address')),
-                ],
+                    fields=[
+                        ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                        ('title', models.CharField(max_length=256)),
+                        ('address', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='lettings.address')),
+                    ],
                     options={
                         'db_table': 'oc_lettings_site_letting',
                     },
                 ),
-             ],
-            # You reference an existing table
-            database_operations=[],
+            ],
+            # You want to reuse the table, so don't drop it
+            # database_operations=[],
         )
     ]
