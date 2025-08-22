@@ -26,19 +26,17 @@ jobs:
       - name: Run tests
         run: poetry run python manage.py test
 
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
 
-  jobs:
-    environment:
+    environment: 
       name: production
       #url: ${{ steps.deployment.outputs.page_url }}
       url: "https://glencho.casacam.net/"
-      
-    runs-on: ubuntu-latest
 
     steps:
-      - name: checkout repo
-        uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-    
-     
+    - name: Checkout repo
+      uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
