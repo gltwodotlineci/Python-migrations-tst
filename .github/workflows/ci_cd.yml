@@ -2,9 +2,9 @@ name: Django migration test
 
 on:
   push:
-    branches: [ "preprod" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "preprod" ]
+    branches: [ "master" ]
 
 jobs:
   test:
