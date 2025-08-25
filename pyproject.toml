@@ -16,6 +16,7 @@ dependencies = [
     "sentry-sdk (==2.34.1)",
     "ipdb (>=0.13.13,<0.14.0)",
     "dotenv (>=0.9.9,<0.10.0)",
+    "gunicorn (>=23.0.0,<24.0.0)",
 ]
 
 [build-system]
