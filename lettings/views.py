@@ -13,6 +13,9 @@ def index(request):
 
 
 def letting(request, letting_id):
+    """
+    Render the letting detail page.
+    """
     letting = Letting.objects.get(id=letting_id)
     title = letting.title
     address = letting.address
