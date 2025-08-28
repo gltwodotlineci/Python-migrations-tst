@@ -23,14 +23,11 @@ RUN poetry config virtualenvs.create false && \
 # Copy the rest of the app
 COPY . /app
 
-# Ensure static folder exists
-
-# Run Django management commands at build time
-RUN python manage.py migrate --noinput
-RUN python manage.py collectstatic --noinput --clear
+# Ensure static folder exists (not strictly required, but safe)
+RUN mkdir -p /app/staticfiles
 
 # Expose port
 EXPOSE 8000
 
-# Start Gunicorn at container runtime
-CMD ["gunicorn", "--config", "gunicorn_config.py", "oc_lettings_site.wsgi:application"]
+# Run migrations + collectstatic + start Gunicorn at container runtime
+CMD ["sh", "-c", "python manage.py migrate --noinput && python manage.py collectstatic --noinput --clear && gunicorn --config gunicorn_config.py oc_lettings_site.wsgi:application"]
