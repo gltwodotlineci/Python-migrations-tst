@@ -25,18 +25,34 @@ jobs:
 
       - name: Run tests
         run: poetry run python manage.py test
+  
+      - name: Lint with flake8
+        run: |
+          poetry run flake8 .
 
   deploy:
     needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
-
-    environment: 
-      name: production
-      #url: ${{ steps.deployment.outputs.page_url }}
-      url: "https://glencho.casacam.net/"
 
     steps:
     - name: Checkout repo
       uses: actions/checkout@v3
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
+
+    # Build image docke and push it to Docker Hub
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with: 
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        file: ./docker/dockerfile
+        push: true
+
+    - name: Trigger deployment on Render.com
+      run: curl -X POST secrets.RENDER_DEPLOY_HOOK_URL

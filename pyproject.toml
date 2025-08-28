@@ -15,9 +15,10 @@ dependencies = [
     "pytest-django (==4.11.1)",
     "sentry-sdk (==2.34.1)",
     "ipdb (>=0.13.13,<0.14.0)",
-    "dotenv (>=0.9.9,<0.10.0)",
     "gunicorn (>=23.0.0,<24.0.0)",
     "sphinx (>=8.2.3,<9.0.0)",
+    "whitenoise (>=6.9.0,<7.0.0)",
+    "python-dotenv (>=1.1.1,<2.0.0)",
 ]
 
 [build-system]
