@@ -28,7 +28,7 @@ RUN mkdir -p /app/staticfiles
 
 # Run Django management commands at build time
 RUN python manage.py migrate --noinput
-RUN python manage.py collectstatic --noinput
+RUN python manage.py collectstatic --noinput --clear
 
 # Expose port
 EXPOSE 8000
