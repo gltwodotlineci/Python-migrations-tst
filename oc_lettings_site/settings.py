@@ -3,6 +3,7 @@ from sentry_sdk.integrations.django import DjangoIntegration
 from pathlib import Path
 
 import os
+import sys
 import sentry_sdk
 
 
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -56,6 +58,21 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+if "test" in sys.argv or os.environ.get("DISABLE_WHITENOISE", False):
+    # For local tests & CI/CD
+    STORAGES = {
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        }
+    }
+else:
+    # For production
+    STORAGES = {
+        "staticfiles": {
+            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        }
+    }
 
 ROOT_URLCONF = 'oc_lettings_site.urls'
 
@@ -110,11 +127,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# STORAGES = {
-#     "staticfiles": {
-#         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-#     },
-# }
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
