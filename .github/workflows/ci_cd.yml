@@ -28,7 +28,7 @@ jobs:
   
       - name: Lint with flake8
         run: |
-          poetry run flake8 .
+          poetry run flake8 --exclude .venv,*/migrations/*,*/__pycache__/* .
 
   deploy:
     needs: test

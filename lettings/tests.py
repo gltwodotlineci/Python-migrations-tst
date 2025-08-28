@@ -57,7 +57,6 @@ class HttpResponseTest(TestCase):
         Letting.objects.create(title="The Tram is still there",
                                address=ad1)
 
-
     def test_letting_home_page(self):
         """
         Testing the url to profile page
@@ -72,8 +71,8 @@ class HttpResponseTest(TestCase):
         """
         Testing the url to profile page
         """
-        l = Letting.objects.get(address__number=7)
-        response = self.client.get(f'/lettings/{l.id}/')
+        letting = Letting.objects.get(address__number=7)
+        response = self.client.get(f'/lettings/{letting.id}/')
         self.assertEqual(response.status_code, 200)
         self.assertIn(b"Lettings", response.content)
         self.assertNotIn(b"We hunged Mussolini here", response.content)

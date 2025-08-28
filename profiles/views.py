@@ -14,7 +14,7 @@ def index(request):
 
 def profile(request, username):
     """
-    Render the user profile detail page. 
+    Render the user profile detail page.
     """
     profile = Profile.objects.get(user__username=username)
     return render(request, 'profiles/profile.html', {'profile': profile})
