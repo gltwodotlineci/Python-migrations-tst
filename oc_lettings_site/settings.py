@@ -10,10 +10,10 @@ load_dotenv()
 
 
 sentry_sdk.init(
-    dsn=os.getenv("SENTRY_DSN"),  # or paste directly for testing
+    dsn=os.getenv("SENTRY_DSN"),
     integrations=[DjangoIntegration()],
-    traces_sample_rate=1.0,  # performance monitoring, adjust as needed
-    send_default_pii=True,   # sends user data if you use Django's auth
+    traces_sample_rate=1.0,
+    send_default_pii=True,
     environment=os.getenv("ENVIRONMENT", "development"),
 )
 
@@ -49,7 +49,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -63,7 +63,10 @@ ROOT_URLCONF = 'oc_lettings_site.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [
+            BASE_DIR,
+            os.path.join(BASE_DIR, 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -108,11 +111,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-STORAGES = {
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}
+# STORAGES = {
+#     "staticfiles": {
+#         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+#     },
+# }
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
