@@ -5,11 +5,9 @@ build:
   tools:
     python: "3.12"
 
-# Install your project and docs dependencies
+# Install the docs dependencies
 python:
   install:
-    - method: pip
-      path: .             # install your Django project (so autodoc works)
     - requirements: docs/requirements.txt
 
 sphinx:
