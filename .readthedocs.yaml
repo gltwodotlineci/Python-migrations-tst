@@ -8,6 +8,8 @@ build:
 # Install the docs dependencies
 python:
   install:
+    - method: pip
+      path: .
     - requirements: docs/requirements.txt
 
 sphinx:
