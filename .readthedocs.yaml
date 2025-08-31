@@ -5,10 +5,30 @@ build:
   tools:
     python: "3.12"
 
-# Install the docs dependencies
+# Install Poetry
+build:
+  image: latest
+  jobs:
+    post_create_environment:
+      - pip install poetry
+
 python:
   install:
-    - requirements: docs/requirements.txt
+    - method: poetry
+      path: .
+  version: "3.12"
 
-sphinx:
-  configuration: docs/source/conf.py
+# Configure the documentation build
+build:
+  tools:
+    python: "3.12"
+  jobs:
+    pre_build:
+      - poetry install
+    build:
+      - poetry run sphinx-build -b html . _build/html
+    post_build:
+      - poetry run sphinx-build -b html . _build/html
+      - poetry run sphinx-build -b dirhtml . _build/dirhtml
+      - poetry run sphinx-build -b singlehtml . _build/singlehtml
+      - poetry run sphinx-build -b latex . _build/latex
