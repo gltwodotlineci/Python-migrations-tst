@@ -35,8 +35,12 @@ if os.getenv("SECRET_KEY"):
     ALLOWED_HOSTS = ["lettings-test.onrender.com"]
     DEBUG = False
 
-# Application definition
+CSRF_TRUSTED_ORIGINS = [
+    "https://lettings-test.onrender.com"
+]
 
+
+# Application definition
 INSTALLED_APPS = [
     'oc_lettings_site.apps.OCLettingsSiteConfig',
     'django.contrib.admin',
