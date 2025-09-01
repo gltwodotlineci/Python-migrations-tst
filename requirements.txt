@@ -1,9 +1,14 @@
-django==5.2.4
+# Project dependencies needed for autodoc
+Django==5.2.4
+python-dotenv>=1.1.1,<2.0.0
+whitenoise>=6.9.0,<7.0.0
+sentry-sdk==2.34.1
+gunicorn>=23.0.0,<24.0.0
 
-# Sphinx and theme
+# Testing deps only if conf.py or autodoc imports them
+pytest-django==4.11.1
+
+# Docs dependencies
 sphinx>=8.2.3,<9.0.0
 sphinx-rtd-theme
 myst-parser
-
-python-dotenv>=1.1.1,<2.0.0
-whitenoise>=6.9.0,<7.0.0
