@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ["*"]
 
 if os.getenv("SECRET_KEY"):
     SECRET_KEY = os.getenv("SECRET_KEY")
-    ALLOWED_HOSTS = ["https://lettings-test.onrender.com/"]
+    ALLOWED_HOSTS = ["lettings-test.onrender.com"]
     DEBUG = False
 
 # Application definition
