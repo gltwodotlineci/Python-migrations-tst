@@ -1,9 +1,10 @@
+# Runtime deps needed for autodoc
 django==5.2.4
+python-dotenv>=1.1.1,<2.0.0
+whitenoise>=6.9.0,<7.0.0
 
-# Sphinx and theme
+# Docs deps
 sphinx>=8.2.3,<9.0.0
 sphinx-rtd-theme
 myst-parser
 
-python-dotenv>=1.1.1,<2.0.0
-whitenoise>=6.9.0,<7.0.0
