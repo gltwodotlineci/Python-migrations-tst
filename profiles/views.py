@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from profiles.models import Profile
-from django.conf.urls import handler404
 
 
 def index(request):
@@ -19,13 +18,3 @@ def profile(request, username):
     """
     profile = Profile.objects.get(user__username=username)
     return render(request, 'profiles/profile.html', {'profile': profile})
-
-
-def views_404(request, exception):
-    """
-    Render the 404 page.
-    """
-    return render(request, 'profiles/404.html')
-
-
-handler404 = views_404
