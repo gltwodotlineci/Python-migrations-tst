@@ -38,6 +38,20 @@ if os.getenv("SECRET_KEY"):
 CSRF_TRUSTED_ORIGINS = [
     "https://lettings-test.onrender.com"
 ]
+# LOGIN LOGIN TEST LOGIN TEST
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "DEBUG",
+    },
+}
 
 
 # Application definition
