@@ -1,4 +1,4 @@
-name: Django migration test
+name: ci/cd
 
 on:
   push:
