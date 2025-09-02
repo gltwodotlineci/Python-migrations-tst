@@ -9,12 +9,9 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Poetry
-RUN curl -sSL https://install.python-poetry.org | python3 - && \
-    ln -s /root/.local/bin/poetry /usr/local/bin/poetry
+# Install Poetry via pip
+RUN pip install --no-cache-dir poetry
 
-# Ensure Poetry is in PATH
-ENV PATH="/root/.local/bin:$PATH"
 
 # Copy only dependency files first (cache-friendly)
 COPY pyproject.toml poetry.lock* /app/
