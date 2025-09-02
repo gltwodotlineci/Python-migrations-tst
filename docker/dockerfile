@@ -13,24 +13,24 @@ RUN apt-get update && apt-get install -y \
 RUN curl -sSL https://install.python-poetry.org | python3 - && \
     ln -s /root/.local/bin/poetry /usr/local/bin/poetry
 
-# Ensure Poetry is in PATH for the following RUN commands
+# Ensure Poetry is in PATH
 ENV PATH="/root/.local/bin:$PATH"
 
 # Copy only dependency files first (cache-friendly)
 COPY pyproject.toml poetry.lock* /app/
 
-# Install Poetry
-RUN curl -sSL https://install.python-poetry.org | python3 -
-ENV PATH="/root/.local/bin:$PATH"
+# Install Python dependencies system-wide (disable virtualenvs)
+RUN poetry config virtualenvs.create false \
+    && poetry install --no-interaction --no-root
 
 # Copy the rest of the app
 COPY . /app
 
-# Ensure static folder exists (not strictly required, but safe)
+# Collect static files during build
 RUN python manage.py collectstatic --noinput --clear --verbosity 2
 
 # Expose port
 EXPOSE 8000
 
-# Run migrations + collectstatic + start Gunicorn at container runtime
+# Run migrations and start Gunicorn at container runtime
 CMD ["sh", "-c", "python manage.py migrate --noinput && gunicorn --config gunicorn_config.py oc_lettings_site.wsgi:application"]
