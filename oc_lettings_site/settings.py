@@ -35,9 +35,9 @@ if os.getenv("SECRET_KEY"):
     ALLOWED_HOSTS = ["wrong_url"]
     DEBUG = True
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://migrations-deployment-tst.onrender.com"
-]
+# CSRF_TRUSTED_ORIGINS = [
+#     "https://migrations-deployment-tst.onrender.com"
+# ]
 # LOGIN LOGIN TEST LOGIN TEST
 LOGGING = {
     "version": 1,
