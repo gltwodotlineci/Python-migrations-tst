@@ -27,10 +27,10 @@ ENV PATH="/root/.local/bin:$PATH"
 COPY . /app
 
 # Ensure static folder exists (not strictly required, but safe)
-RUN mkdir -p /app/staticfiles
+RUN python manage.py collectstatic --noinput --clear --verbosity 2
 
 # Expose port
 EXPOSE 8000
 
 # Run migrations + collectstatic + start Gunicorn at container runtime
-CMD ["sh", "-c", "python manage.py migrate --noinput && python manage.py collectstatic --noinput --clear && gunicorn --config gunicorn_config.py oc_lettings_site.wsgi:application"]
+CMD ["sh", "-c", "python manage.py migrate --noinput && gunicorn --config gunicorn_config.py oc_lettings_site.wsgi:application"]
