@@ -36,7 +36,7 @@ if os.getenv("SECRET_KEY"):
     ALLOWED_HOSTS = ["migrations-deployment-tst.onrender.com"]
 
 
-# LOGIN LOGIN TEST LOGIN TEST
+# LOGGING in Prod
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -67,7 +67,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    # "whitenoise.middleware.WhiteNoiseMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -169,10 +169,3 @@ STATICFILES_DIRS = [BASE_DIR / "static",]
 
 # This is where collectstatic will collect all static files for production
 STATIC_ROOT = BASE_DIR / "staticfiles"
-
-# Whitenoise storage for production to serve compressed, hashed files
-if not DEBUG:
-    STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
-else:
-    # Staticfiles storage in development
-    STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
