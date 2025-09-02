@@ -33,7 +33,7 @@ ALLOWED_HOSTS = ["*"]
 if os.getenv("SECRET_KEY"):
     SECRET_KEY = os.getenv("SECRET_KEY")
     ALLOWED_HOSTS = ["migrations-deployment-tst.onrender.com"]
-    DEBUG = False
+    DEBUG = True
 
 CSRF_TRUSTED_ORIGINS = [
     "https://migrations-deployment-tst.onrender.com"
