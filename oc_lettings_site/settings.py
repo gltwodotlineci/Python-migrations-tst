@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ["*"]
 if os.getenv("SECRET_KEY"):
     SECRET_KEY = os.getenv("SECRET_KEY")
     # DEBUG = False
-    ALLOWED_HOSTS = ["migrations-deployment-tst.onrender.com"]
+    ALLOWED_HOSTS = ["lettings-test.onrender.com"]
 
 
 # LOGGING in Prod
