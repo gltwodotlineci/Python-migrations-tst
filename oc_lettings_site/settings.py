@@ -33,7 +33,6 @@ ALLOWED_HOSTS = ["*"]
 if os.getenv("SECRET_KEY"):
     SECRET_KEY = os.getenv("SECRET_KEY")
     ALLOWED_HOSTS = ["migrations-deployment-tst.onrender.com"]
-    DEBUG = False
 
 # LOGIN LOGIN TEST LOGIN TEST
 LOGGING = {
