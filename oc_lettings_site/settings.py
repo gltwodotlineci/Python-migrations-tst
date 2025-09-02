@@ -3,7 +3,6 @@ from sentry_sdk.integrations.django import DjangoIntegration
 from pathlib import Path
 
 import os
-import sys
 import sentry_sdk
 
 
