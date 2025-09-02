@@ -27,12 +27,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'fp$9^593hsriajg$_%=5trot9g!1qa@ew(o-1#@=&4%=hp46(s'
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ["wrong_url"]
 
 if os.getenv("SECRET_KEY"):
     SECRET_KEY = os.getenv("SECRET_KEY")
-    DEBUG = True
+    DEBUG = False
     ALLOWED_HOSTS = ["migrations-deployment-tst.onrender.com"]
 
 
