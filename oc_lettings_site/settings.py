@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ["wrong_url"]
 
 if os.getenv("SECRET_KEY"):
     SECRET_KEY = os.getenv("SECRET_KEY")
-    ALLOWED_HOSTS = ["migrations-deployment-tst.onrender.com"]
+    ALLOWED_HOSTS = ["wrong_url"]
     DEBUG = True
 
 
