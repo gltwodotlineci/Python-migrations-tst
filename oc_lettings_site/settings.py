@@ -166,3 +166,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static",]
+
+# This is where collectstatic will collect all static files for production
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# Whitenoise storage for production to serve compressed, hashed files
+if not DEBUG:
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+else:
+    # Staticfiles storage in development
+    STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
