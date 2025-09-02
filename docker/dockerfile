@@ -32,5 +32,8 @@ RUN python manage.py collectstatic --noinput --clear --verbosity 2
 # Expose port
 EXPOSE 8000
 
-# Run migrations and start Gunicorn at container runtime
-CMD ["sh", "-c", "python manage.py migrate --noinput && gunicorn --config gunicorn_config.py oc_lettings_site.wsgi:application"]
+# Run collectstatic **at container runtime**, not at build time
+CMD ["sh", "-c", "\
+    python manage.py migrate --noinput && \
+    python manage.py collectstatic --noinput --clear --verbosity 2 && \
+    gunicorn --config gunicorn_config.py oc_lettings_site.wsgi:application"]
