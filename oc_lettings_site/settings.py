@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = 'fp$9^593hsriajg$_%=5trot9g!1qa@ew(o-1#@=&4%=hp46(s'
 SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = True
-ALLOWED_HOSTS = ["migrations-deployment-tst.onrender.com"]
+ALLOWED_HOSTS = ["*"]
 
 # if os.getenv("SECRET_KEY"):
 #     SECRET_KEY = os.getenv("SECRET_KEY")
