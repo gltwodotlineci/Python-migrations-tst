@@ -1,37 +1,36 @@
 FROM python:3.12-slim
 
-# Prevent Python from writing pyc files and enable unbuffered mode
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
-
 # Set working directory
 WORKDIR /app
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    curl build-essential \
+    curl \
+    build-essential \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Poetry
 RUN curl -sSL https://install.python-poetry.org | python3 - && \
     ln -s /root/.local/bin/poetry /usr/local/bin/poetry
 
+# Ensure Poetry is in PATH
 ENV PATH="/root/.local/bin:$PATH"
 
-# Copy dependency files first
+# Copy only dependency files first (cache-friendly)
 COPY pyproject.toml poetry.lock* /app/
 
-# Install Python dependencies
-RUN poetry config virtualenvs.create false && poetry install --no-root --no-interaction
+# Install Python dependencies system-wide (disable virtualenvs)
+RUN poetry config virtualenvs.create false \
+    && poetry install --no-interaction --no-root
 
-# Copy the rest of the project
+# Copy the rest of the app
 COPY . /app
 
-# Collect static files (build time)
+# Collect static files during build
 RUN python manage.py collectstatic --noinput --clear --verbosity 2
 
 # Expose port
 EXPOSE 8000
 
-# Run migrations + start server
+# Run migrations and start Gunicorn at container runtime
 CMD ["sh", "-c", "python manage.py migrate --noinput && gunicorn --config gunicorn_config.py oc_lettings_site.wsgi:application"]
