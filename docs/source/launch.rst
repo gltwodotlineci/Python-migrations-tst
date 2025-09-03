@@ -34,18 +34,15 @@ Add it to your .env file. Or in the Host platform (Render in my case) add it as 
 **Attention If you use .env, do not forget to add .env in .gitignore file.**
 
 Example format:
+
 .. code-block:: bash
     # in .env file
     SECRET_KEY=your-secret-key
     # Attention: Most Host servers have their field where you can add environment variables.
     # If for a reason you can't add it to .env file in the host plaftorm.
-Example format:
-.. code-block:: bash
-
-    SECRET_KEY=your-secret-key
-
 
 Example format:
+
 .. code-block:: bash
 
     SECRET_KEY=your-secret-key
