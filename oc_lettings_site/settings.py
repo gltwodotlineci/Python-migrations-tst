@@ -8,13 +8,14 @@ import sentry_sdk
 
 load_dotenv()
 
+ENVIRONMENT = os.getenv("ENVIRONMENT", default="local")
 
 sentry_sdk.init(
     dsn=os.getenv("SENTRY_DSN"),
     integrations=[DjangoIntegration()],
     traces_sample_rate=1.0,
     send_default_pii=True,
-    environment=os.getenv("ENVIRONMENT", "development"),
+    environment=ENVIRONMENT,
 )
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -24,15 +25,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'fp$9^593hsriajg$_%=5trot9g!1qa@ew(o-1#@=&4%=hp46(s'
-DEBUG = True
-ALLOWED_HOSTS = ["*"]
-
-if os.getenv("SECRET_KEY"):
-    DEBUG = os.getenv("DEBUG", "False").lower() in ("true", "1")
-    ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS",
-                              "oc-lettings-site-docker.onrender.com").split(",")
+if ENVIRONMENT == "PRODUCTION":
+    SECRET_KEY = os.getenv("SECRET_KEY")
+    DEBUG = False
+    ALLOWED_HOSTS = ["oc-lettings-site-docker.onrender.com"]
+else:
+    SECRET_KEY = 'fp$9^593hsriajg$_%=5trot9g!1qa@ew(o-1#@=&4%=hp46(s'
+    DEBUG = True
+    ALLOWED_HOSTS = ["*"]
 
 # LOGGING in Prod
 LOGGING = {
@@ -151,23 +151,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-# STATICFILES_DIRS = [BASE_DIR / "static",]
+if ENVIRONMENT == "PRODUCTION":
+    STATIC_URL = "/static/"
+    STATIC_ROOT = BASE_DIR / "staticfiles"
 
-# This is where collectstatic will collect all static files for production
-# STATIC_ROOT = BASE_DIR / "staticfiles"
+else:
+    AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = "my-static-files-cd-test-app"
+    AWS_S3_REGION_NAME = "eu-north-1"
+    AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+    AWS_QUERYSTRING_AUTH = False
 
-AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
-AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
-AWS_STORAGE_BUCKET_NAME = "my-static-files-cd-test-app"
-AWS_S3_REGION_NAME = "eu-north-1"
-AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
-AWS_QUERYSTRING_AUTH = False
+    AWS_LOCATION = 'static'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+    STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
-AWS_LOCATION = 'static'
-STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-
-# S3 (Amazon Web Services) settings for static files
-STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-# URL for static files
-# STATIC_URL = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/"
+    # S3 (Amazon Web Services) settings for static files
+    STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+    # URL for static files
+    # STATIC_URL = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/"
