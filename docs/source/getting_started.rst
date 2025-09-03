@@ -1,5 +1,7 @@
-Welcome to the Lettings Application
+Starting the Application
 ===================================
+Welcome to the Lettings Application
+
 
 This application can be used to create and list rental places all around
 the world and view the details of each place.
@@ -38,3 +40,18 @@ If you want to use Poetry:
    poetry update
    poetry shell
    # !!! Verify that the root directory contains both 'poetry.lock' and 'pyproject.toml'
+
+If you want to use venv:
+
+.. code-block:: bash
+
+   # Create a virtual environment:
+   python3 -m venv env
+   # Activate the virtual environment:
+   source env/bin/activate
+   # Install dependencies:
+   # First we adapt our poetry dependencies to pip requirements:
+   pip install poetry2req
+   poetry2req -f requirements.txt poetry.lock > requirements.txt
+
+   pip install -r requirements.txt
