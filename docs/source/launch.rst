@@ -1,4 +1,4 @@
-Launching
+Launching credentials
 ===================================
 We will procide with a step-by-step guide to launch the application.
 
@@ -46,7 +46,7 @@ Example format:
     # in .env file
     SECRET_KEY=your-secret-key
     # Attention: Most Host servers have their field where you can add environment variables.
-    # If for a reason you can't add it to .env file in the host plaftorm.
+    # If for a reason you can't add it. Add .env file in the host plaftorm.
 
 Example format:
 
@@ -57,34 +57,15 @@ Example format:
 For the continues deployment, you will need `DOCKER_HUB_ACCESS_TOKEN` and `DOCKER_HUB_USERNAME` as well, but
 it will be explained further to the deployment part.
 
-Launchement
------------------------------------
 
-In your local machine.
+The tools for launching the aplication in public.
 --------------------------------------------------
-In your local machine you will need just to check the dockerc-ompse.yml
-file that you can find in the repository `docker`.
-In the docker-compose.yml check for the Port part.
+The most important tools that you need are a version control system and a virtual machine or a containerization platform (in our case we are using the second one).
+and a Platform-as-a-Service (PaaS).
 
-.. code-block:: yml
+For the version control system I recommend 'Github', docker for the containerization platform and For the PaaS service I'm using 'Render'.
 
-    ports:
-      - "8003:8000"
-
-***The port 8003 is the port that you will use to access the application.***
-change it if you want or need to use another port.***
-
-Than you can launch the docker with the next commands:
-
-.. code-block:: bash
-
-    cd docker
-    docker-compose up -d
-
-
-In a public server
---------------------------------------------------
-In a public server the simplest way is to use a server platform and a
-public version control.
-
-.. code-block:: yml
+So once you have an account in this three tools, you will have to creat some token keys.
+Because you have to guarantee that this platforms will be able to communicate with each other.
+But at this stage, the most important thing is to connect your Github account with your Pc and also
+a repository where you will store the app.
