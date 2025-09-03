@@ -1,4 +1,4 @@
-Starting the Application
+Setup
 ===================================
 Welcome to the Lettings Application
 
