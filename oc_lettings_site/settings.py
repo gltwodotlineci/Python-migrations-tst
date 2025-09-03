@@ -159,7 +159,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
 AWS_STORAGE_BUCKET_NAME = "my-static-files-cd-test-app"
-AWS_S3_REGION_NAME = "eu-west-3"
+AWS_S3_REGION_NAME = "eu-north-1"
 AWS_QUERYSTRING_AUTH = False
 
 # S3 (Amazon Web Services) settings for static files
