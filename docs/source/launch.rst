@@ -80,3 +80,11 @@ Than you can launch the docker with the next commands:
 
     cd docker
     docker-compose up -d
+
+
+In a public server
+--------------------------------------------------
+In a public server the simplest way is to use a server platform and a
+public version control.
+
+.. code-block:: yml
