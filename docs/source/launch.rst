@@ -4,9 +4,12 @@ We will procide with a step-by-step guide to launch the application.
 
 Envirenement Variables
 -----------------------------------
-First let start with Sentry. As you see in settings.py there is a variable called SENTRY_DSN.
+Sentry
+----------------------------------------------------
+First let start with Sentry. As you see in settings.py there is a variable called **SENTRY_DSN**.
 You need to add your own DSN from Sentry. You can find it in your project settings in Sentry.
-Add it to your .env file.
+Add it to your **.env** file.
+**Attention when you use .env. It is imperative to add .env in .gitignore file.**
 
 In your Sentry account you can find it here:
 Go to Project Settings:
@@ -21,5 +24,28 @@ Example format:
 
 Than you create a .env file and add the variable:
 .. code-block:: bash
-
     SENTRY_DSN=https://your-dsn-from-sentry.com
+
+Django Secret Key
+----------------------------------------------------
+You need to add your own secret key to a .env file, or in **Render** if you are using it as your web server.
+In settings.py, you will find **SECRET_KEY**. Use the default key in debug mode and in production your own secret key.
+Add it to your .env file. Or in the Host platform (Render in my case) add it as an environment variable.
+**Attention If you use .env, do not forget to add .env in .gitignore file.**
+
+Example format:
+.. code-block:: bash
+    # in .env file
+    SECRET_KEY=your-secret-key
+    # Attention: Most Host servers have their field where you can add environment variables.
+    # If for a reason you can't add it to .env file in the host plaftorm.
+Example format:
+.. code-block:: bash
+
+    SECRET_KEY=your-secret-key
+
+
+Example format:
+.. code-block:: bash
+
+    SECRET_KEY=your-secret-key
