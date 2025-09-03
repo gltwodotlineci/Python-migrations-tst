@@ -53,3 +53,30 @@ Example format:
 .. code-block:: bash
 
     SECRET_KEY=your-secret-key
+
+For the continues deployment, you will need `DOCKER_HUB_ACCESS_TOKEN` and `DOCKER_HUB_USERNAME` as well, but
+it will be explained further to the deployment part.
+
+Launchement
+-----------------------------------
+
+In your local machine.
+--------------------------------------------------
+In your local machine you will need just to check the dockerc-ompse.yml
+file that you can find in the repository `docker`.
+In the docker-compose.yml check for the Port part.
+
+.. code-block:: yml
+
+    ports:
+      - "8003:8000"
+
+***The port 8003 is the port that you will use to access the application.***
+change it if you want or need to use another port.***
+
+Than you can launch the docker with the next commands:
+
+.. code-block:: bash
+
+    cd docker
+    docker-compose up -d
