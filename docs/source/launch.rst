@@ -68,4 +68,4 @@ For the version control system I recommend 'Github', docker for the containeriza
 So once you have an account in this three tools, you will have to creat some token keys.
 Because you have to guarantee that this platforms will be able to communicate with each other.
 But at this stage, the most important thing is to connect your Github account with your Pc and also
-a repository where you will store the app.
+a repository where you will store the app. Than you can push your app with your changes or as it is.

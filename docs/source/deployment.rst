@@ -34,36 +34,39 @@ We can produce on our Docker Hub account a 'DOCKER_HUB_ACCESS_TOKEN' and record 
     In the left sidebar, go to Secrets and variables → Actions.
     Click New repository secret.
     Add: Name → DOCKER_HUB_ACCESS_TOKEN Value → paste your Docker Hub access token
+    You will do the same for the 'DOCKER_HUB_USERNAME'.
+    Add: Name → DOCKER_HUB_USERNAME Value → paste your Docker Hub username
 
 
 Platform-as-a-Service (PaaS) part.
 -----------------------------------------------
+You can start create a web servervice in PaaS, in our case Render.
 
 
-First you need to create a repository in Github and push the code in the repository.
-use the branch master for the production version (you will see why in the explenantion of
-continues deployment).
+.. note::
 
-If you have a dockerhub account you need to create a ripository. than in the personal
-access tokens you shall create 2 tokens: 'RENDER_TOKEN' and 'DOCKER_HUB_ACCESS_TOKEN'.(or the name of other web server plaftorm),
-'DOCKER_HUB_ACCESS_TOKEN'. This tokens will be saved in the web version control system
-and in the web server plaftorm.
+   First create a token key for Render in Docker Hub.
+   Then when you create the web service choose the option existigng image.
+   Add the name of the image in Docker Hub and also add the credentials the token you created on Docker Hub.
+   Then you can start creating the web service.
+   After that in the Envirenment variables of Render add the variable 'SECRET_KEY' with a value of your choice.
 
-When you create a web service in Rener or in an other platform, you can add the 'RENDER_TOKEN'
-the credentials options. Once you create
+   Once you created the web service you can access it in the url of the web service.
+   And to activate the continues deployment you need to add the 'Deploy Hook' in your Github repository.
+   So copy it and in your github environment variables add the name 'RENDER_WEBHOOK' and paste the webhook url.
 
 
-Than you need to create a Render project and associete the docker image
+The solution for the static files.
+-----------------------------------------------
+Your application is published, but you will notice that it looks like no css has been used.
+Actually, the css and all static files are not in the public folder, so it is not being served.
+One solution is to create a small web service that will serve the static files.
+In our case we will use Amazon S3 to store the static files.
+You can create a bucket in S3 and also a Key with it secret key.
+AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY are the environment variables that you need to add in Render.
 
-and add the repository in the project. Than you can launch the project in
-Render.
+Now the application might have all its colors and styles.
 
-In Render you can use the next commands to launch the project:
-
-.. code-block:: bash
-
-    docker-compose up -d
-.. code-block:: yml
 
 
 Launchement in local
@@ -71,7 +74,7 @@ Launchement in local
 
 In your local machine.
 --------------------------------------------------
-In your local machine you will need just to check the dockerc-ompse.yml
+In your local machine you will need just to check the dockerc-compse.yml
 file that you can find in the repository `docker`.
 In the docker-compose.yml check for the Port part.
 
