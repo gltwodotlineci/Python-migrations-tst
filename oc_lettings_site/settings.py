@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ["*"]
 if os.getenv("SECRET_KEY"):
     DEBUG = os.getenv("DEBUG", "False").lower() in ("true", "1")
     ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS",
-                              "lettings-test.onrender.com").split(",")
+                              "oc-lettings-site-docker.onrender.com").split(",")
 
 # LOGGING in Prod
 LOGGING = {
