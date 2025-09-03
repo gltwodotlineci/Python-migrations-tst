@@ -18,12 +18,18 @@ Find Client Keys (DSN):
 Inside your project settings, click Client Keys (DSN).
 Here you’ll see your DSN URL. You can copy it directly.
 
+  
+
 Example format:
+
 .. code-block:: bash
     https://<PUBLIC_KEY>@o123456.ingest.sentry.io/123456
 
+
 Than you create a .env file and add the variable:
+
 .. code-block:: bash
+
     SENTRY_DSN=https://your-dsn-from-sentry.com
 
 Django Secret Key
@@ -36,6 +42,7 @@ Add it to your .env file. Or in the Host platform (Render in my case) add it as 
 Example format:
 
 .. code-block:: bash
+
     # in .env file
     SECRET_KEY=your-secret-key
     # Attention: Most Host servers have their field where you can add environment variables.
