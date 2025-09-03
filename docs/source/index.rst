@@ -17,5 +17,6 @@ documentation for details.
 
    getting_started
    launch
+   deployment
    lettings
    profiles
