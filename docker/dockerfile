@@ -27,4 +27,7 @@ COPY . /app
 EXPOSE 8000
 
 # Run collectstatic **at container runtime**, not at build time
-CMD ["sh", "-c", "python manage.py collectstatic --noinput --clear --verbosity 2"]
+CMD ["sh", "-c", "\
+    python manage.py migrate --noinput && \
+    python manage.py collectstatic --noinput --clear --verbosity 2 && \
+    gunicorn --config gunicorn_config.py oc_lettings_site.wsgi:application"]
