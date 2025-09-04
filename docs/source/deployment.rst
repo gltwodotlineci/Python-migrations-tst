@@ -31,11 +31,11 @@ We can produce on our Docker Hub account a 'DOCKER_HUB_ACCESS_TOKEN' and record 
 .. note::
 
    On Settings of our ripository.
-    In the left sidebar, go to Secrets and variables → Actions.
-    Click New repository secret.
-    Add: Name → DOCKER_HUB_ACCESS_TOKEN Value → paste your Docker Hub access token
-    You will do the same for the 'DOCKER_HUB_USERNAME'.
-    Add: Name → DOCKER_HUB_USERNAME Value → paste your Docker Hub username
+    - In the left sidebar, go to Secrets and variables → Actions.
+    - Click New repository secret.
+    - Add: Name → DOCKER_HUB_ACCESS_TOKEN Value → paste your Docker Hub access token
+    - You will do the same for the 'DOCKER_HUB_USERNAME'.
+    - Add: Name → DOCKER_HUB_USERNAME Value → paste your Docker Hub username
 
 
 Platform-as-a-Service (PaaS) part.
@@ -45,15 +45,16 @@ You can start create a web servervice in PaaS, in our case Render.
 
 .. note::
 
-   First create a token key for Render in Docker Hub.
-   Then when you create the web service choose the option existigng image.
-   Add the name of the image in Docker Hub and also add the credentials the token you created on Docker Hub.
-   Then you can start creating the web service.
-   After that in the Envirenment variables of Render add the variable 'SECRET_KEY' with a value of your choice.
+   In the left side bar of Render, go to Envirenment.
+    - First create a token key for Render in Docker Hub.
+    - Then when you create the web service choose the option existigng image.
+    - Add the name of the image in Docker Hub and also add the credentials the token you created on Docker Hub.
+    - Then you can start creating the web service.
+    - After that in the Envirenment variables of Render add the variable 'SECRET_KEY' with a value of your choice.
 
-   Once you created the web service you can access it in the url of the web service.
-   And to activate the continues deployment you need to add the 'Deploy Hook' in your Github repository.
-   So copy it and in your github environment variables add the name 'RENDER_WEBHOOK' and paste the webhook url.
+    - Once you created the web service you can access it in the url of the web service.
+    - And to activate the continues deployment you need to add the 'Deploy Hook' in your Github repository.
+    - So copy it and in your github environment variables add the name 'RENDER_WEBHOOK' and paste the webhook url.
 
 
 The solution for the static files.
