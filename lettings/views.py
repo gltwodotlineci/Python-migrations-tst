@@ -5,6 +5,9 @@ from lettings.models import Letting
 def index(request):
     """
     Render the index page of profiles.
+
+    Returns:
+        HttpResponse: The rendered index page with all lettings.
     """
     lettings = Letting.objects.all()
 
@@ -14,7 +17,16 @@ def index(request):
 
 def letting(request, letting_id):
     """
-    Render the letting detail page.
+    Render the detail page for a specific letting.
+    Retrieves the Letting object with the given ID and renders the
+    'lettings/letting.html' template with its title and address.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        letting_id (int): The ID of the letting to display.
+
+    Returns:
+        HttpResponse: The rendered letting detail page for the specified letting.
     """
     letting = Letting.objects.get(id=letting_id)
     title = letting.title
