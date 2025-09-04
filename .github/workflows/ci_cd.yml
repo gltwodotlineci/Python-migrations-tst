@@ -25,7 +25,12 @@ jobs:
 
       - name: Run tests
         run: poetry run python manage.py test
-  
+
+      - name: Check coverage
+        run: |
+          poetry run coverage manage.py test
+          poetry run coverage report --fail-under=80
+
       - name: Lint with flake8
         run: |
           poetry run flake8 --exclude .venv,*/migrations/*,*/__pycache__/* .
