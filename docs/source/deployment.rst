@@ -84,8 +84,7 @@ In the docker-compose.yml check for the Port part.
     ports:
       - "8003:8000"
 
-***The port 8003 is the port that you will use to access the application.***
-change it if you want or need to use another port.***
+*The port 8003 is the port that you will use to access the application. change it if you want or need to use another port.*
 
 Than you can launch the docker with the next commands:
 
