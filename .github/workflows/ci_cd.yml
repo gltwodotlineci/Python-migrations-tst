@@ -28,7 +28,6 @@ jobs:
 
       - name: Check coverage
         run: |
-          poetry run coverage test
           poetry run coverage report --fail-under=80
 
       - name: Lint with flake8
